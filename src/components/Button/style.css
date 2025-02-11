@@ -1,0 +1,21 @@
+.note-button{
+    padding: 10px;
+    border: none;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0 0 2px gray;
+    cursor: pointer;
+    transition: 0.5s;
+    letter-spacing: 1px;
+    font-family: roboto-light;
+}
+
+.note-button:hover{
+    letter-spacing: 3px;
+    background-color: whitesmoke;
+}
+
+@font-face {
+    font-family: roboto-light;
+    src: url('../../font/roboto/Roboto-Light.ttf')format('truetype');
+}

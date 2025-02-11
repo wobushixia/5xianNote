@@ -1,0 +1,31 @@
+#app{
+    height: 100vh;
+}
+
+#page-404{
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#page-404 > div > h1{
+    font-family: 'Roboto-Light';
+    letter-spacing: 2px;
+}
+
+#page-404 > div > p{
+    font-family: 'Roboto-Thin';
+}
+
+@font-face {
+    font-family: Roboto-Light;
+    src: url('../../font/roboto/Roboto-Light.ttf')format('truetype');
+}
+
+@font-face {
+    font-family: Roboto-Thin;
+    src: url('../../font/roboto//Roboto-Thin.ttf');
+}

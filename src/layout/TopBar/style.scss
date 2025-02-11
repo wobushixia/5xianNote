@@ -1,0 +1,33 @@
+#top-bar {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 0 16px rgba(10,10,10,0.1); /* 修正了这里的box-shadow属性 */
+    padding: 5px;
+    width: 100%; /* 修正了这里的宽度 */
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%; /* 确保body的高度是100% */
+}
+
+#logo {
+    margin-left: 20px; /* 使logo居中 */
+    margin-right: 40px;
+    height: 40px;
+}
+
+@font-face {
+    font-family: roboto-Light;
+    src: url('../../font/roboto/Roboto-Light.ttf')format('truetype');
+}
+
+@media (max-width:1024px){
+    ul {
+        left:0;
+    }
+}

@@ -1,0 +1,62 @@
+.card{
+    background-color: white;
+    display: flex;
+    box-shadow: 0 0 20px rgba(10,10,10,0.1);
+    flex-direction: column;
+    padding: 5px;
+    padding-left:10px;
+    padding-right:10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.card-header{
+    font-family: 'roboto-regular';
+    font-style: normal;
+    font-weight: 100;
+    margin:10px;
+}
+
+div .card .card-header{
+    font-size: larger;
+}
+
+div .card .card-description{
+    text-align: center;
+    box-shadow: 0 0 1px gray;
+    margin-bottom: 10px;
+}
+
+div .card .card-description.hasntShadow{
+    text-align: left;
+    box-shadow: none !important;
+    margin-bottom: 10px;
+}
+
+.card-description{
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+    font-family: 'roboto-thin','noto-sans';
+    font-size: large;
+}
+
+.card button{
+    margin: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+}
+
+@font-face {
+    font-family: roboto-regular;
+    src: url('../../font/roboto/Roboto-Regular.ttf')format('truetype');
+}
+@font-face {
+    font-family: roboto-thin;
+    src: url('../../font/roboto/Roboto-Thin.ttf')format('truetype');
+}
+@font-face {
+    font-family: noto-sans;
+    src: url('../../font/NotoSans/NotoSansSC-Light.ttf')format('truetype');
+}
