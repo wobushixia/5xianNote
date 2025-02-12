@@ -15,22 +15,22 @@ await (async () => {
             component: module.default
         };
         routes.push(obj);
-        routes.push(
-            {
-                path:'/',
-                redirect:'/Home'
-            },
-            {
-                path: "/:pathMatch(.*)*",
-                redirect:'/404',
-            },
-            {
-                path: "/404",
-                name: "NotFound",
-                component:Page404,
-            }
-        )
     }
+    routes.push(
+        {
+            path:'/',
+            redirect:'/Home'
+        },
+        {
+            path: "/:pathMatch(.*)*",
+            redirect:'/404',
+        },
+        {
+            path: "/404",
+            name: "NotFound",
+            component:Page404,
+        }
+    )
     routes = routes.concat(articlesRouteList)
     routes = routes.concat(categoriesRouteList)
 

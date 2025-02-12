@@ -8,7 +8,7 @@ import NoteButton from '@/components/Button/index.vue'
     <div id="page-404">
         <div>
             <h1>404Page</h1>
-            <p>Router Not Found , Please Type True Router</p>
+            <p>Route Not Found , Please Type True Route</p>
             <p>Framework : Vue3</p>
             <note-button text="Return To Lobby" @click="router.push({path:'/Home'})"></note-button>
         </div>
