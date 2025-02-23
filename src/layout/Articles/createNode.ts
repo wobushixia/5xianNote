@@ -1,7 +1,6 @@
 export interface ArticleNode {
     parent: ArticleNode | null;
     step: number;
-    href: string;
     name: string;
     children: Array<ArticleNode>;
   }
@@ -17,7 +16,6 @@ export interface nodeTree {
     const globalNode: ArticleNode = {
       parent: null,
       step: 0,
-      href: `#`,
       name: name,
       children: [],
     };
@@ -33,7 +31,6 @@ export interface nodeTree {
     const articleNode: ArticleNode = {
       parent: parentNode,
       step: parentNode.step + 1,
-      href: `#${name}`,
       name: name,
       children: [],
     };

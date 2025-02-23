@@ -14,7 +14,7 @@ const goAnchor = (selector:string) =>{
 <template>
     <div v-if="props.children.length">
         <div v-for="(ele,index) in props.children" :key="ele.name">
-            <li @click="goAnchor(ele.href)">{{ ele.step+"."+(index+1)+":"+ele.name }}</li>
+            <li @click="goAnchor('#'+ele.name.replace(/[0-9.\s]/ig,''))">{{ ele.step+"."+(index+1)+":"+ele.name }}</li>
             <ul v-if="props.children.length"><note-tree :children="ele.children"></note-tree></ul>
         </div>
     </div>

@@ -1,6 +1,17 @@
 #contentContainer{
     font-family: roboto-angular , noto-sans;
-    h1,h2,h3,h4,h5,h6{
+    padding: 10px 20px;
+    display:block;
+    blockquote{
+        p{
+            border-style: solid;
+            border-color: #39c5bb;
+            border-width: 0;
+            border-left-width:5px;
+            padding: 0 5px;
+        }
+    }
+    h1{
         text-align: center;
     }
 }

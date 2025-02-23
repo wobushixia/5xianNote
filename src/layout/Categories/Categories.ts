@@ -5,24 +5,21 @@ interface Category{
     amount:number
 }
 let categories:Category[] = []
-
+let _i:number = 0
 const categoriesInit = () =>{
+    categories = categories.concat({name:articles[0].category,amount:0})
     articles.forEach(ele=>{
-        if(categories.length===0){
-            categories.push({
-                name:ele.category,
-                amount:0
-            })
-        }
-
-        categories.forEach(ele1=>{
-            if(ele.category===ele1.name){
-                ele1.amount++
-            }else if(categories.indexOf({name:ele.category,amount:ele1.amount})===-1){
-                categories.push({
-                    name:ele.category,
-                    amount:1
-                })
+        _i=0
+        categories.forEach((ele2)=>{
+            if(ele.category===ele2.name){
+                console.log('match success')
+                ele2.amount++
+            }else{
+                console.log("_i++",_i)
+                _i++
+                if(_i===categories.length){
+                    categories = categories.concat({name:ele.category,amount:1})
+                }
             }
         })
     })

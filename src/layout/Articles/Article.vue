@@ -7,6 +7,7 @@ import Card from '@/components/Card/index.vue'
 import NoteTree from '@/components/Tree/index.vue'
 import { setNode, setGlobalNode, type ArticleNode } from "./createNode";
 import LRLayout from '@/components/LRLayout/index.vue'
+import mermaid from 'mermaid'
 
 const nodeInit = () =>{
   const contentContainer:Ref<HTMLElement> = ref(document.querySelector('#contentContainer') as HTMLElement)
@@ -17,7 +18,7 @@ const nodeInit = () =>{
   for(let i=1;i<6;i++){
     if(contentContainer.value.querySelector(`h${i+1}`)!==undefined){
       contentContainer.value.querySelectorAll(`h${i+1}`).forEach((ele)=>{
-        ele.id = (ele.textContent as string)
+        ele.id = (ele.textContent as string).replace(/[0-9.\s]/ig,'')
         if(i!==1){
           const matchRule = new RegExp(`<h${parentNodeArray[0].step+1}>`,'g')
           const results:Array<{index:number,value:string}> = []
@@ -52,31 +53,24 @@ const props = defineProps<{
   id: number;
 }>();
 
-let data:Ref<string> = ref("waiting for data...");
+let data:Ref<string> = ref(props.content);
 let contentResult:Ref<ArticleNode> = ref(setGlobalNode('waiting for data...',false))
 
-onMounted(async () => {
-  data.value = await marked(props.content);
 
-  watch(
-    data,
-    async () => {
-      await nextTick();
-      // @ts-ignore
-      if (window.MathJax) {
-        // @ts-ignore
-        window.MathJax.typeset();
-      } else {
-        console.error("MathJax 未加载，请确保 MathJax 已正确引入");
-      }
-    },
-    {
-      immediate: true,
-      once:true
-    }
-  );
+onMounted(async () => {
+  window.MathJax.typeset()
+  data.value = props.content;
   await nextTick()
   contentResult.value = nodeInit()
+  await nextTick()
+  document.querySelectorAll(".language-mermaid").forEach(ele=>{
+    ((ele.parentElement as HTMLElement).className as string) = "mermaid";
+    (ele.parentElement as HTMLElement).textContent = ele.textContent
+    ele.remove()
+  })
+  await nextTick()
+  mermaid.init()
+
 });
 </script>
 
@@ -84,7 +78,7 @@ onMounted(async () => {
   <LRLayout>
     <template #left>
       <personal-card />
-      <card header="目录" deleteButton noShadow>
+      <card header="目录" deleteButton noShadow id="context">
         <h3>{{ contentResult.name }}</h3>
         <ul>
           <note-tree :children="contentResult.children"></note-tree>
