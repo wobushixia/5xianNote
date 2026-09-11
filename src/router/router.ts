@@ -2,44 +2,29 @@ import { createWebHashHistory, createRouter, type RouteRecordRaw } from 'vue-rou
 import reference from '../layout/TopBar/reference';
 import articlesRouteList from '../layout/Articles/articlesRouteList';
 import categoriesRouteList from '../layout/Categories/categoriesRouteList';
-import Page404 from '@/layout/Page404/index.vue'
+import Page404 from '@/layout/Page404/index.vue';
 
-let routes: RouteRecordRaw[] = [];
-let router
+const routes: RouteRecordRaw[] = [];
 
-await (async () => {
-    for (let i = 0; i < reference.length; i++) {
-        const module = await import(`@/layout/${reference[i].name}/index.vue`);
-        const obj: RouteRecordRaw = {
-            path: `/${reference[i].name}`,
-            component: module.default
-        };
-        routes.push(obj);
-    }
-    routes.push(
-        {
-            path:'/',
-            redirect:'/Home'
-        },
-        {
-            path: "/:pathMatch(.*)*",
-            redirect:'/404',
-        },
-        {
-            path: "/404",
-            name: "NotFound",
-            component:Page404,
-        }
-    )
-    routes = routes.concat(articlesRouteList)
-    routes = routes.concat(categoriesRouteList)
+for (let i = 0; i < reference.length; i++) {
+  routes.push({
+    path: `/${reference[i].name}`,
+    component: () => import(`@/layout/${reference[i].name}/index.vue`),
+  });
+}
 
-    const router_temp = createRouter({
-        history: createWebHashHistory(),
-        routes,
-    });
+routes.push(
+  { path: '/', redirect: '/Home' },
+  { path: '/:pathMatch(.*)*', redirect: '/404' },
+  { path: '/404', name: 'NotFound', component: Page404 },
+);
 
-    router = router_temp;
-})();
+routes.push(...articlesRouteList);
+routes.push(...categoriesRouteList);
 
-export default router as any;
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
+});
+
+export default router;

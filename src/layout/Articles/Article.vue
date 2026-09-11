@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch, nextTick, type Ref } from "vue";
-import { marked } from "marked";
+import { onMounted, ref, nextTick, type Ref } from "vue";
 import PersonalCard from "../../prefab/PersonalCard.vue";
 import './Article.scss'
 import Card from '@/components/Card/index.vue'
@@ -58,6 +57,7 @@ let contentResult:Ref<ArticleNode> = ref(setGlobalNode('waiting for data...',fal
 
 
 onMounted(async () => {
+  // @ts-ignore
   window.MathJax.typeset()
   data.value = props.content;
   await nextTick()
